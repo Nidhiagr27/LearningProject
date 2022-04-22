@@ -6,6 +6,7 @@ import com.example.project.service.WeatherService;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,10 @@ public class HelloController {
         try {
            HttpResponse<String> unirestResponse = weatherService.getWeather(city,days);
            String result= unirestResponse.getBody();
-            return ResponseEntity.status(unirestResponse.getStatus()).body(result);
+            HttpHeaders headers=new HttpHeaders();
+            headers.add("Name","Nidhi");
+            return new ResponseEntity<>(result,headers,unirestResponse.getStatus());
+            //return ResponseEntity.status(unirestResponse.getStatus()).body(result);
         } catch (InvalidCityException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
