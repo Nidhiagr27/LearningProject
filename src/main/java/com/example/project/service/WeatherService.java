@@ -13,16 +13,16 @@ public class WeatherService {
     @Autowired
     private WeatherAccessor weatherAccessor;
 
-    public String getWeather(String city, Integer days) throws InvalidCityException, UnirestException {
+    public HttpResponse<String> getWeather(String city, Integer days) throws InvalidCityException, UnirestException {
         if (city.length()<2){
             throw new InvalidCityException(city);
         }
 
-            HttpResponse<String> response = Unirest.get("https://weatherapi-com.p.rapidapi.com/forecast.json?q="+city+"&days="+ days)
+            HttpResponse<String> response = Unirest.get("https://www.google.com/forecast.json?q="+city+"&days="+ days)
                     .header("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
                     .header("X-RapidAPI-Key", "06d9388900msha47ce25c3581eedp112b38jsn8a889b0c3280")
                     .asString();
-            return response.getBody();
+            return response;
 
 
     }
