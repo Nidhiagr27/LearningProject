@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1' //for manipulation of json
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.6'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.mashape.unirest:unirest-java:1.4.9'
